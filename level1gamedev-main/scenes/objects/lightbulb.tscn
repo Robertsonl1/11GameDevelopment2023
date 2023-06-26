@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqv78xi1kcohi"]
+
+[ext_resource type="ArrayMesh" uid="uid://d022xhgi5vms1" path="res://data/meshes/lightbulb_Icosphere.res" id="1_n2ltm"]
+[ext_resource type="Material" uid="uid://5dhk8bg73owa" path="res://data/materials/metal.tres" id="1_tatdn"]
+[ext_resource type="Material" uid="uid://bjeic3te1f5y6" path="res://data/materials/bulb.tres" id="2_0s0ed"]
+
+[node name="Lightbulb" type="Node3D"]
+
+[node name="lightbulb" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_n2ltm")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("1_tatdn")
+surface_material_override/1 = ExtResource("2_0s0ed")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.226638, 0)
+light_color = Color(0.905882, 0.72549, 0.439216, 1)
+light_energy = 1.5
+shadow_enabled = true
+omni_range = 10.0

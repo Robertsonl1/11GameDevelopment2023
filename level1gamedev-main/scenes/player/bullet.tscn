@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://q638cndchnce"]
+
+[sub_resource type="GDScript" id="GDScript_lxrkx"]
+script/source = "extends RigidBody3D
+
+var shoot = false
+
+const DAMAGE = 50
+const SPEED = 10
+
+func _ready():
+	set_as_top_level(true)
+
+func _physics_process(_delta):
+	if shoot:
+		apply_impulse(-transform.basis.z, transform.basis.z * SPEED)
+
+func _on_area_3d_body_entered(body):
+	if body.is_in_group(\"Enemy\"):
+		body.health -= DAMAGE
+		queue_free()
+	
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vg4xd"]
+size = Vector3(0.06, 0.06, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ojnjf"]
+size = Vector3(0.06, 0.06, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_syvc5"]
+size = Vector3(0.08, 0.08, 0.22)
+
+[node name="Bullet" type="RigidBody3D"]
+script = SubResource("GDScript_lxrkx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vg4xd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ojnjf")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_syvc5")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

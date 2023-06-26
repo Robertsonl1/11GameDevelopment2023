@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://cavq1a0j1s1pm"]
+
+[ext_resource type="Texture2D" uid="uid://di7v8o1r2i2y2" path="res://data/import/Concrete034_2K_Color.jpg" id="1_ddbcf"]
+[ext_resource type="Texture2D" uid="uid://de8ta2ym65wcs" path="res://data/import/Concrete034_2K_Roughness.png" id="2_ib84u"]
+[ext_resource type="Texture2D" uid="uid://cwmypsxy3n6fu" path="res://data/import/Concrete034_2K_NormalGL.jpg" id="3_3ffkl"]
+
+[resource]
+resource_name = "concrete"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ddbcf")
+metallic_texture = ExtResource("2_ib84u")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("2_ib84u")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("3_3ffkl")

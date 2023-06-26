@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bjeic3te1f5y6"]
+
+[resource]
+resource_name = "bulb"
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.905882, 0.72549, 0.439216, 1)
+emission_enabled = true
+emission = Color(0.905882, 0.72549, 0.439216, 1)
+emission_energy_multiplier = 3.0
+disable_receive_shadows = true

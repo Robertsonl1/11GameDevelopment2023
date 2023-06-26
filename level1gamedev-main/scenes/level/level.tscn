@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://bn0bbil7cnwwq"]
+
+[ext_resource type="PackedScene" uid="uid://g8nk6ghj641t" path="res://scenes/player/player.tscn" id="1_vus3u"]
+[ext_resource type="PackedScene" uid="uid://clt7ydmb5jx8x" path="res://scenes/characters/Enemy.tscn" id="2_xp200"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ot7qv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_kn5l2"]
+sky_material = SubResource("ProceduralSkyMaterial_ot7qv")
+
+[sub_resource type="Environment" id="Environment_o7ghs"]
+background_mode = 2
+sky = SubResource("Sky_kn5l2")
+ambient_light_source = 3
+reflected_light_source = 1
+tonemap_mode = 2
+sdfgi_use_occlusion = true
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_unylr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x5rnv"]
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o7ghs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.612372, 0.353553, 0, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 0, 10, 0)
+shadow_enabled = true
+shadow_normal_bias = 0.0
+
+[node name="Player" parent="." instance=ExtResource("1_vus3u")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 2.14967, 0)
+
+[node name="Objects" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(30, 0, 0, 0, 1, 0, 0, 0, 30, 0, 0, 0)
+mesh = SubResource("BoxMesh_unylr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_x5rnv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.1436e-07, -0.521486, -25.5978, 1.3919e-07, 0.85326, -15.6445, 10, -3.34849e-08, -8.42914e-07, 26.9391, 7.66352, 0)
+mesh = SubResource("BoxMesh_unylr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("BoxShape3D_x5rnv")
+
+[node name="Enemy" parent="." instance=ExtResource("2_xp200")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04864, 1.54831, -0.647764)
